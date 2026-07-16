@@ -1,0 +1,46 @@
+{
+  "exact_reproduction": {
+    "anpm_synthetic_beta_largegap.csv": 1.9195756095768957e-13,
+    "anpm_synthetic_beta_smallgap.csv": 0.0,
+    "anpm_synthetic_gap_.csv": 1.3866685577568205e-12,
+    "anpm_synthetic_noise_.csv": 3.4861002973229915e-14
+  },
+  "claims": {
+    "C1_beta_slope": {
+      "beta0": -0.007277525482864927,
+      "beta_star": -0.010359920605514968,
+      "beta_tune": -0.005074250005174275,
+      "accelerated_faster": true
+    },
+    "C3_critical_boundary": {
+      "beta_star_final": 0.0003343557211475678,
+      "beta_crit_final": 0.9998135926506307,
+      "beta_crit_diverges": true
+    },
+    "C1_noise_sweep": {
+      "eta_levels": [
+        "$10^{-2.0}$",
+        "$10^{-2.4}$",
+        "$10^{-2.8}$",
+        "$10^{-3.2}$",
+        "$10^{-3.6}$",
+        "$10^{-4.0}$"
+      ],
+      "finals": [
+        0.0364006213225855,
+        0.01506105959279943,
+        0.005490399540978827,
+        0.002280014542592712,
+        0.0008871884268819426,
+        0.0003789374104860958
+      ],
+      "all_converge": true,
+      "floor_monotone_in_eta": false
+    },
+    "C2_decentralized_PCA": {
+      "beta0_final": 0.003341386622449205,
+      "beta_tune_final": 0.0027326156819598157,
+      "accelerated_lower": true
+    }
+  }
+}

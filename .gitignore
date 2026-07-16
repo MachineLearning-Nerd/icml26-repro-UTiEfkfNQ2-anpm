@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.env
+# vendored upstream clone (re-clone via README; pinned commit 3623010)
+upstream/
+# keep small result CSVs under outputs/, drop heavy/large dumps
+outputs/**/*.log
+.trackio/**/.serve.log

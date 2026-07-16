@@ -1,0 +1,39 @@
+{
+  "space_id": "DineshAI/UTiEfkfNQ2",
+  "emoji": "🎯",
+  "created_at": "2026-07-16T18:48:14+00:00",
+  "title": "Repro - Accelerated Noisy Power Method (ANPM)",
+  "paper": {
+    "arxiv_id": "2602.03682",
+    "openreview_id": "UTiEfkfNQ2"
+  },
+  "tags": [
+    "icml2026-repro",
+    "paper-UTiEfkfNQ2"
+  ],
+  "autosync": true,
+  "private": false,
+  "last_page": "conclusion",
+  "local_path_artifacts": [
+    {
+      "path": "upstream/results/anpm_synthetic_beta_largegap.csv",
+      "abs_path": "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-UTiEfkfNQ2-anpm/upstream/results/anpm_synthetic_beta_largegap.csv",
+      "size": 175485,
+      "artifact_type": "dataset"
+    },
+    {
+      "path": "upstream/results/anpm_synthetic_noise_.csv",
+      "abs_path": "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-UTiEfkfNQ2-anpm/upstream/results/anpm_synthetic_noise_.csv",
+      "size": 132198,
+      "artifact_type": "dataset"
+    },
+    {
+      "path": "upstream/results/anpm_amazon_k3.csv",
+      "abs_path": "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-UTiEfkfNQ2-anpm/upstream/results/anpm_amazon_k3.csv",
+      "size": 301,
+      "artifact_type": "dataset"
+    }
+  ],
+  "local_dashboards": {},
+  "artifacts_bucket": "DineshAI/UTiEfkfNQ2-artifacts"
+}
