@@ -1,0 +1,50 @@
+{
+  "experiment": "official paper-default decentralized PCA on ego-Facebook",
+  "command": "python -u anpm/experiments/depca_egofb.py --T 200 --k 5 --n 50 --exp_name full_repro",
+  "official_script": "anpm/experiments/depca_egofb.py",
+  "official_algorithms": "anpm/depca.py::{ADePM,DePM}",
+  "official_code_commit": "3623010e6a3d35bced7fa45b89689753b23551df",
+  "dataset": {
+    "name": "SNAP ego-Facebook combined graph",
+    "agents": 50,
+    "local_matrix_dimension": 50,
+    "source_file_sha256": "f41c026ed8af3cc3359f1ca5573d0605fb09ae0eefa34544b820fd8c6e2ef296"
+  },
+  "parameters": {
+    "T": 200,
+    "k": 5,
+    "n": 50,
+    "gossip_rounds": [
+      20,
+      40
+    ]
+  },
+  "matched_communication": "Within each L, ADePM and DePM call the identical AcceleratedGossip routine exactly L times per outer iteration.",
+  "result_shape": [
+    201,
+    9
+  ],
+  "result_sha256": "7b8496b1c854fd5ca6217744e6ead0e65269529be8d379e70cbebfb796560cf3",
+  "max_abs_diff_vs_authors_reference": 2.1181697888728035e-12,
+  "runs": {
+    "20": {
+      "gossip_rounds_per_iteration": 20,
+      "depm_final": 0.0036793525971938546,
+      "adepm_beta_star_final": 0.00043446712327151025,
+      "adepm_beta_tuned_final": 0.00039430179443246003,
+      "depm_to_tuned_error_ratio": 9.331310811024196
+    },
+    "40": {
+      "gossip_rounds_per_iteration": 40,
+      "depm_final": 0.0035527234678262264,
+      "adepm_beta_star_final": 2.8560944566916384e-09,
+      "adepm_beta_tuned_final": 1.438557113855499e-07,
+      "depm_to_tuned_error_ratio": 24696.436683730393
+    }
+  },
+  "environment": {
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "platform": "Linux-7.0.9-arch2-1-x86_64-with-glibc2.43"
+  }
+}

@@ -37,6 +37,45 @@
       "all_converge": true,
       "floor_monotone_in_eta": true
     },
+    "C2_paper_scale_decentralized_PCA": {
+      "dataset": "real SNAP ego-Facebook graph",
+      "agents": 50,
+      "local_matrix_dimension": 50,
+      "rank_k": 5,
+      "iterations": 200,
+      "official_script": "anpm/experiments/depca_egofb.py",
+      "official_algorithm": "anpm/depca.py::{ADePM,DePM}",
+      "regenerated_shape": [
+        201,
+        9
+      ],
+      "max_abs_diff_vs_authors_reference": 2.1181697888728035e-12,
+      "runs": {
+        "20": {
+          "gossip_rounds_per_iteration": 20,
+          "communication_matched": true,
+          "depm_final": 0.0036793525971938546,
+          "adepm_beta_star_final": 0.00043446712327151025,
+          "adepm_beta_tuned_final": 0.00039430179443246003,
+          "depm_to_tuned_final_error_ratio": 9.331310811024196,
+          "depm_first_below_1e-3": null,
+          "adepm_beta_star_first_below_1e-3": 39,
+          "adepm_beta_tuned_first_below_1e-3": 97
+        },
+        "40": {
+          "gossip_rounds_per_iteration": 40,
+          "communication_matched": true,
+          "depm_final": 0.0035527234678262264,
+          "adepm_beta_star_final": 2.8560944566916384e-09,
+          "adepm_beta_tuned_final": 1.438557113855499e-07,
+          "depm_to_tuned_final_error_ratio": 24696.436683730393,
+          "depm_first_below_1e-3": null,
+          "adepm_beta_star_first_below_1e-3": 36,
+          "adepm_beta_tuned_first_below_1e-3": 94
+        }
+      },
+      "all_accelerated_lower_at_matched_communication": true
+    },
     "C2_decentralized_PCA": {
       "dataset": "SNAP Amazon0302",
       "nodes": 262111,

@@ -7,10 +7,10 @@ Official code: [pierreaguie/ANPM](https://github.com/pierreaguie/ANPM) (commit `
 
 ## Claims (all verified)
 1. **Accelerated rate under milder perturbation** — β* decays faster than β=0; ANPM converges for η ∈ [1e-4,1e-2].
-2. **First accelerated decentralized PCA, similar comm cost** — full Amazon0302 regeneration (262,111 nodes, 1,234,877 edges, k=30, T=100) gives 2.7234e-3 for tuned ANPM versus 3.1186e-3 for plain, 12.67% lower at the matched budget. A small decentralized control also matches gossip-round budgets.
+2. **First accelerated decentralized PCA, similar comm cost** — the official `ADePM`/`DePM` code runs on a real 50-agent ego-Facebook network at identical L=20 and L=40 gossip budgets. Tuned ADePM gives 9.33× and 24,696× lower final error, respectively; the 201×9 CSV matches the authors' reference within 2.12e-12.
 3. **Worst-case optimal (cannot relax conditions)** — at the critical momentum β_c the iterate diverges (sin θ → 0.9998) while β* converges.
 
-Regenerated synthetic CSVs match the authors' reference to ≤1.4e-12. The full Amazon curves are within 6.89% of the authors' run (the reported metric uses iterative `eigsh` at tolerance 1e-3), with the same final ordering. 5/5 unit tests pass.
+Regenerated synthetic CSVs match the authors' reference to ≤1.4e-12 and the real decentralized Facebook CSV to 2.12e-12. The complementary full Amazon curves are within 6.89% of the authors' run. 7/7 unit tests pass.
 
 ## Reproduce
 ```bash
@@ -20,7 +20,9 @@ git clone https://github.com/pierreaguie/ANPM.git upstream && (cd upstream && gi
 # regenerate the paper's synthetic experiments (deterministic, seed 0)
 (cd upstream && python anpm/experiments/anpm_synthetic_beta.py  --exp_name largegap)
 (cd upstream && python anpm/experiments/anpm_synthetic_noise.py)
-# C2 decentralized-PCA demo + full verification summary
+# C2 official paper-default decentralized PCA on a real network
+(cd upstream && python anpm/experiments/depca_egofb.py --T 200 --k 5 --n 50 --exp_name full_repro)
+# Additional small control and centralized large-graph scale check
 python repro/src/depca_demo.py
 # paper-scale Amazon0302 regeneration (about 11 minutes on this CPU)
 bash repro/src/run_amazon_full.sh

@@ -52,6 +52,14 @@ def maxdiff(name):
     return float(np.max(np.abs(A - B)))
 
 
+def maxdiff_pair(result_name, reference_name):
+    _, actual = load(os.path.join(RES, result_name))
+    _, reference = load(os.path.join(REF, reference_name))
+    if actual.shape != reference.shape:
+        return None
+    return float(np.max(np.abs(actual - reference)))
+
+
 def decay_slope(t, y, lo=20, hi=400, ymax=0.95, ymin=1e-6):
     yy = y.copy()
     logy = np.log(np.where(yy > 0, yy, 1e-12))
@@ -98,6 +106,54 @@ def main():
     res["claims"]["C1_noise_sweep"] = {"eta_levels": noise_levels, "finals": noise_finals,
                                        "all_converge": bool(noise_converges),
                                        "floor_monotone_in_eta": bool(floor_monotone)}
+
+    # ---- real, paper-default decentralized PCA (C2) ----
+    # Official depca_egofb.py: Facebook graph, n=d=50, k=5, T=200.  Each
+    # ADePM/DePM pair uses exactly the same L accelerated-gossip rounds per
+    # outer iteration, so communication is matched by construction.
+    fb_name = "depca_ego_facebook_full_repro.csv"
+    fb_path = os.path.join(RES, fb_name)
+    if os.path.exists(fb_path):
+        hf, af = load(fb_path)
+        fb_ref_name = "depca_ego_facebook_.csv"
+        fb_diff = maxdiff_pair(fb_name, fb_ref_name)
+
+        def first_below(column, threshold):
+            hits = np.flatnonzero(af[:, column] < threshold)
+            return int(af[hits[0], 0]) if len(hits) else None
+
+        runs = {}
+        for gossip_rounds, depm, accelerated_star, accelerated_tuned in [
+            (20, 1, 3, 4), (40, 5, 7, 8)
+        ]:
+            runs[str(gossip_rounds)] = {
+                "gossip_rounds_per_iteration": gossip_rounds,
+                "communication_matched": True,
+                "depm_final": float(af[-1, depm]),
+                "adepm_beta_star_final": float(af[-1, accelerated_star]),
+                "adepm_beta_tuned_final": float(af[-1, accelerated_tuned]),
+                "depm_to_tuned_final_error_ratio": float(af[-1, depm] / af[-1, accelerated_tuned]),
+                "depm_first_below_1e-3": first_below(depm, 1e-3),
+                "adepm_beta_star_first_below_1e-3": first_below(accelerated_star, 1e-3),
+                "adepm_beta_tuned_first_below_1e-3": first_below(accelerated_tuned, 1e-3),
+            }
+        res["claims"]["C2_paper_scale_decentralized_PCA"] = {
+            "dataset": "real SNAP ego-Facebook graph",
+            "agents": 50,
+            "local_matrix_dimension": 50,
+            "rank_k": 5,
+            "iterations": 200,
+            "official_script": "anpm/experiments/depca_egofb.py",
+            "official_algorithm": "anpm/depca.py::{ADePM,DePM}",
+            "regenerated_shape": list(af.shape),
+            "max_abs_diff_vs_authors_reference": fb_diff,
+            "runs": runs,
+            "all_accelerated_lower_at_matched_communication": bool(all(
+                run["adepm_beta_star_final"] < run["depm_final"]
+                and run["adepm_beta_tuned_final"] < run["depm_final"]
+                for run in runs.values()
+            )),
+        }
 
     # ---- amazon (C2: accelerated decentralized PCA) ----
     am = os.path.join(RES, "anpm_amazon_sigma1e-3_k30_every10.csv")
@@ -164,6 +220,21 @@ def main():
     c3 = res["claims"]["C3_critical_boundary"]
     print(f"  beta* final sin theta = {c3['beta_star_final']:.4e} (converges)")
     print(f"  beta_c final sin theta = {c3['beta_crit_final']:.4e} -> diverges at boundary: {c3['beta_crit_diverges']}")
+    if "C2_paper_scale_decentralized_PCA" in res["claims"]:
+        c2d = res["claims"]["C2_paper_scale_decentralized_PCA"]
+        print("\nC2 PRIMARY (official decentralized PCA on real Facebook graph):")
+        print(f"  {c2d['agents']} agents, local d={c2d['local_matrix_dimension']}, "
+              f"k={c2d['rank_k']}, T={c2d['iterations']}; regenerated shape "
+              f"{c2d['regenerated_shape']}")
+        print(f"  max abs diff vs authors' reference: "
+              f"{c2d['max_abs_diff_vs_authors_reference']:.3e}")
+        for rounds, run in c2d["runs"].items():
+            print(f"  matched L={rounds}: DePM={run['depm_final']:.4e}, "
+                  f"ADePM beta*={run['adepm_beta_star_final']:.4e}, "
+                  f"ADePM beta_t={run['adepm_beta_tuned_final']:.4e}; "
+                  f"plain/tuned ratio={run['depm_to_tuned_final_error_ratio']:.2f}x")
+        print(f"  all accelerated variants lower at matched communication: "
+              f"{c2d['all_accelerated_lower_at_matched_communication']}")
     if "C2_decentralized_PCA" in res["claims"]:
         c2 = res["claims"]["C2_decentralized_PCA"]
         print("\nC2 (accelerated decentralized PCA, Amazon graph):")

@@ -91,3 +91,30 @@ def test_full_amazon_tuned_momentum_beats_plain_at_matched_budget():
     plain_final, tuned_final = actual[-1, 1], actual[-1, 2]
     assert tuned_final < plain_final
     assert (plain_final - tuned_final) / plain_final > 0.10
+
+
+def test_paper_scale_facebook_decentralized_run_matches_reference():
+    """The official real-graph decentralized experiment is independently exact."""
+    root = pathlib.Path(__file__).resolve().parents[2]
+    header, actual = _load_csv(
+        root / "upstream/results/depca_ego_facebook_full_repro.csv"
+    )
+    ref_header, reference = _load_csv(
+        root / "upstream/results_reference/depca_ego_facebook_.csv"
+    )
+    assert header == ref_header
+    assert actual.shape == reference.shape == (201, 9)
+    np.testing.assert_allclose(actual, reference, rtol=1e-9, atol=3e-12)
+
+
+def test_paper_scale_facebook_adepm_beats_depm_at_matched_gossip():
+    """ADePM and DePM use identical L, and acceleration wins for L=20 and 40."""
+    root = pathlib.Path(__file__).resolve().parents[2]
+    _, actual = _load_csv(
+        root / "upstream/results/depca_ego_facebook_full_repro.csv"
+    )
+    for depm, beta_star, beta_tuned in [(1, 3, 4), (5, 7, 8)]:
+        assert actual[-1, beta_star] < actual[-1, depm]
+        assert actual[-1, beta_tuned] < actual[-1, depm]
+    assert actual[-1, 1] / actual[-1, 4] > 9
+    assert actual[-1, 5] / actual[-1, 8] > 20_000

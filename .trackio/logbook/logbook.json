@@ -11,7 +11,7 @@
     "icml2026-repro",
     "paper-UTiEfkfNQ2"
   ],
-  "updated_at": "2026-07-17T04:05:14+00:00",
+  "updated_at": "2026-07-17T04:33:45+00:00",
   "root": {
     "slug": "index",
     "title": "Repro - Accelerated Noisy Power Method (ANPM)",
@@ -55,6 +55,6 @@
       }
     ]
   },
-  "agent_view_tokens": 4081,
-  "revision": "1784261114169731638"
+  "agent_view_tokens": 5139,
+  "revision": "1784262825008405980"
 }
