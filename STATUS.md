@@ -1,7 +1,7 @@
 # STATUS — ANPM (UTiEfkfNQ2) reproduction
 
-**Session:** autoloop. **Last updated:** 2026-07-17. **State: SECOND C2 REPAIR COMPLETE; publishing for re-verdict.**
-At Space SHA `36740b72fdfa713e527e8af2acb8d42513e2d903`, the official judge retained 5/6 because Amazon ANPM did not execute decentralized gossip. The new repair directly runs the official Facebook `ADePM`/`DePM` experiment and is published at Space SHA `ead88b5802d8d9725df6463b05bd9dd5495bfcd8`. HF: https://huggingface.co/spaces/DineshAI/UTiEfkfNQ2 · GitHub: https://github.com/MachineLearning-Nerd/icml26-repro-UTiEfkfNQ2-anpm.
+**Session:** autoloop. **Last updated:** 2026-07-17. **State: OFFICIAL VERDICT COMPLETE; HIGH QUALITY; 6/6.**
+At Space SHA `ead88b5802d8d9725df6463b05bd9dd5495bfcd8`, the official judge verified all three claims at `2026-07-17T04:43:56+00:00`. The accepted C2 evidence directly runs the official Facebook `ADePM`/`DePM` experiment. HF: https://huggingface.co/spaces/DineshAI/UTiEfkfNQ2 · GitHub: https://github.com/MachineLearning-Nerd/icml26-repro-UTiEfkfNQ2-anpm.
 
 ## Paper
 - **Title:** Improved Analysis of the Accelerated Noisy Power Method with Applications to Decentralized PCA. arXiv 2602.03682 · OpenReview UTiEfkfNQ2 (Aguié, Even, Massoulié).
@@ -32,5 +32,8 @@ At Space SHA `36740b72fdfa713e527e8af2acb8d42513e2d903`, the official judge reta
 - [x] independently regenerate full Amazon0302 k=30 experiment and add judge-facing evidence.
 - [x] respond to first re-judge by regenerating official real Facebook ADePM/DePM at matched L=20/40.
 
-## NEXT
-- Publish repaired Space/GitHub state and wait for an official 6/6 re-verdict.
+## OFFICIAL RESULT
+- Quality: **high**.
+- Claims: **verified / verified / verified**.
+- Score: **6/6**.
+- Accepted C2 evidence: real SNAP ego-Facebook, 50 agents, matched L=20/40 gossip, 9.33×/24,696× lower tuned-ADePM error, max reference diff 2.12e-12.
