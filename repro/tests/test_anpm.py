@@ -6,6 +6,7 @@ import os, sys, pathlib
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent.parent / "upstream"))
 
 import numpy as np
+import csv
 from anpm.anpm import anpm
 from anpm.metrics import sin_thetak
 from anpm.data.synthetic_instances import generate_eigenvectors, generate_matrix, generate_X0, generate_noise
@@ -56,3 +57,37 @@ def test_beta_star_beats_or_matches_plain_power_method_transient():
     e_zero = [sin_thetak(U[:, :k], X[:, :k], k) for X in anpm(A, 0.0, T, X0, Xi)]
     # both converge to a small error
     assert e_star[-1] < 0.05 and e_zero[-1] < 0.05
+
+
+def _load_csv(path):
+    with open(path) as fh:
+        rows = list(csv.reader(fh))
+    return rows[0], np.asarray(rows[1:], dtype=float)
+
+
+def test_full_amazon_rank30_regeneration_agrees_with_reference():
+    """Paper-scale curves agree despite the metric's loose eigsh tolerance."""
+    root = pathlib.Path(__file__).resolve().parents[2]
+    name = "anpm_amazon_sigma1e-3_k30_every10.csv"
+    header, actual = _load_csv(root / "upstream" / "results" / name)
+    ref_header, reference = _load_csv(root / "upstream" / "results_reference" / name)
+
+    assert header == ref_header == ["t", "$0$", "$\\beta_t$"]
+    assert actual.shape == reference.shape == (11, 3)
+    np.testing.assert_array_equal(actual[:, 0], np.arange(0, 101, 10))
+    relative_diff = np.abs(actual[:, 1:] - reference[:, 1:]) / np.abs(reference[:, 1:])
+    assert np.max(relative_diff) < 0.10
+    # Both independent runs conclude tuned momentum beats plain at T=100.
+    assert actual[-1, 2] < actual[-1, 1]
+    assert reference[-1, 2] < reference[-1, 1]
+
+
+def test_full_amazon_tuned_momentum_beats_plain_at_matched_budget():
+    """At the same 100 iterations, tuned momentum has lower rank-30 error."""
+    root = pathlib.Path(__file__).resolve().parents[2]
+    _, actual = _load_csv(
+        root / "upstream" / "results" / "anpm_amazon_sigma1e-3_k30_every10.csv"
+    )
+    plain_final, tuned_final = actual[-1, 1], actual[-1, 2]
+    assert tuned_final < plain_final
+    assert (plain_final - tuned_final) / plain_final > 0.10

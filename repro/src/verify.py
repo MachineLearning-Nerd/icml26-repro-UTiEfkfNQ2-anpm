@@ -16,8 +16,10 @@ mechanisms independent of merely eyeballing the plots:
     - beta sweep: at the CRITICAL momentum beta_c the iterate DIVERGES (sin theta
       stays ~1.0) whereas beta* converges -> the boundary is tight.
 
-Also reports exact-reproduction: max abs diff of each regenerated CSV vs the
-authors' reference CSV (FP library-version noise, ~1e-13).
+Also reports exact reproduction for the synthetic CSVs.  The Amazon error
+metric uses a deliberately loose iterative eigensolver tolerance (1e-3), so its
+cross-SciPy comparison is assessed by relative curve agreement and the final
+method ordering rather than bitwise equality.
 """
 import csv
 import json
@@ -90,8 +92,8 @@ def main():
     noise_finals = [float(an[-1, j]) for j in range(1, len(hn))]
     # converges = final sin theta well below the start (~1.0) for every eta
     noise_converges = all(f < 0.5 for f in noise_finals)
-    # floor grows with eta (monotone in eta)
-    floor_monotone = all(noise_finals[i] <= noise_finals[i + 1] + 1e-9
+    # Headers are eta=1e-2 ... 1e-4, so floors should decrease left-to-right.
+    floor_monotone = all(noise_finals[i] >= noise_finals[i + 1] - 1e-9
                          for i in range(len(noise_finals) - 1))
     res["claims"]["C1_noise_sweep"] = {"eta_levels": noise_levels, "finals": noise_finals,
                                        "all_converge": bool(noise_converges),
@@ -104,9 +106,40 @@ def main():
         # columns: t, $0$, $beta_t$
         if len(ha) >= 3:
             b0_final = float(aa[-1, 1]); bt_final = float(aa[-1, 2])
-            res["claims"]["C2_decentralized_PCA"] = {"beta0_final": b0_final,
-                                                     "beta_tune_final": bt_final,
-                                                     "accelerated_lower": bool(bt_final < b0_final)}
+            ref_am = os.path.join(REF, "anpm_amazon_sigma1e-3_k30_every10.csv")
+            _, ref_aa = load(ref_am)
+            expected_t = np.arange(0, 101, 10, dtype=float)
+            matched_schedule = bool(
+                aa.shape == (11, 3)
+                and np.array_equal(aa[:, 0], expected_t)
+                and aa.shape == ref_aa.shape
+            )
+            exact_diff = maxdiff("anpm_amazon_sigma1e-3_k30_every10.csv")
+            curve_max_relative_diff = float(np.max(
+                np.abs(aa[:, 1:] - ref_aa[:, 1:]) / np.abs(ref_aa[:, 1:])
+            ))
+            reference_same_final_order = bool(ref_aa[-1, 2] < ref_aa[-1, 1])
+            res["claims"]["C2_decentralized_PCA"] = {
+                "dataset": "SNAP Amazon0302",
+                "nodes": 262111,
+                "edges": 1234877,
+                "rank_k": 30,
+                "iterations": 100,
+                "sigma": 1e-3,
+                "checkpoint_schedule": aa[:, 0].astype(int).tolist(),
+                "matched_schedule": matched_schedule,
+                "beta0_final": b0_final,
+                "beta_tune_final": bt_final,
+                "absolute_improvement": b0_final - bt_final,
+                "relative_improvement_percent": 100.0 * (b0_final - bt_final) / b0_final,
+                "max_abs_diff_vs_authors_reference": exact_diff,
+                "max_relative_diff_vs_authors_reference": curve_max_relative_diff,
+                "reference_same_final_order": reference_same_final_order,
+                "qualitative_reference_agreement": bool(
+                    curve_max_relative_diff < 0.10 and reference_same_final_order
+                ),
+                "accelerated_lower": bool(bt_final < b0_final),
+            }
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w") as fh:
@@ -134,8 +167,15 @@ def main():
     if "C2_decentralized_PCA" in res["claims"]:
         c2 = res["claims"]["C2_decentralized_PCA"]
         print("\nC2 (accelerated decentralized PCA, Amazon graph):")
+        print(f"  full scale: {c2['nodes']:,} nodes, {c2['edges']:,} edges, "
+              f"rank k={c2['rank_k']}, T={c2['iterations']}, sigma={c2['sigma']}")
+        print(f"  matched checkpoints: {c2['matched_schedule']} | max relative curve diff vs "
+              f"authors' reference: {100*c2['max_relative_diff_vs_authors_reference']:.2f}%")
+        print(f"  same final ordering as reference: {c2['reference_same_final_order']} | "
+              f"qualitative agreement: {c2['qualitative_reference_agreement']}")
         print(f"  beta=0 final = {c2['beta0_final']:.4e} | beta_t final = {c2['beta_tune_final']:.4e} "
-              f"-> accelerated lower: {c2['accelerated_lower']}")
+              f"-> accelerated lower: {c2['accelerated_lower']} "
+              f"({c2['relative_improvement_percent']:.2f}% reduction)")
     print("=" * 70)
     print("wrote", OUT)
 

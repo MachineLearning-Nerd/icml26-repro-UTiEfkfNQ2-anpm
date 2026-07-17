@@ -1,0 +1,25 @@
+{
+  "experiment": "Amazon0302 full paper-scale ANPM regeneration",
+  "command": "python -u anpm/experiments/anpm_amazon.py --T 100 --k 30 --sigma 1e-3 --exp_name sigma1e-3_k30_every10 --error_every 10",
+  "dataset": {
+    "name": "SNAP Amazon0302",
+    "nodes": 262111,
+    "edges": 1234877,
+    "sha256": "5fc50df9f5e242bd89bbeebea1e7a8d96b577a1f209b5c1b14785784b246fc8b"
+  },
+  "parameters": {
+    "T": 100,
+    "k": 30,
+    "sigma": 0.001,
+    "error_every": 10
+  },
+  "result_sha256": "98a09663cd85209710b9f3272e40b1db19ec76b44c5a6b1a7dd688b287b095d9",
+  "official_code_commit": "3623010e6a3d35bced7fa45b89689753b23551df",
+  "environment": {
+    "python": "3.12.13",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0",
+    "platform": "Linux-7.0.9-arch2-1-x86_64-with-glibc2.43",
+    "processor": ""
+  }
+}

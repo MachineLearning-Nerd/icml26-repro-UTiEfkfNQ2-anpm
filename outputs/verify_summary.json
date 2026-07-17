@@ -35,11 +35,37 @@
         0.0003789374104860958
       ],
       "all_converge": true,
-      "floor_monotone_in_eta": false
+      "floor_monotone_in_eta": true
     },
     "C2_decentralized_PCA": {
-      "beta0_final": 0.003341386622449205,
-      "beta_tune_final": 0.0027326156819598157,
+      "dataset": "SNAP Amazon0302",
+      "nodes": 262111,
+      "edges": 1234877,
+      "rank_k": 30,
+      "iterations": 100,
+      "sigma": 0.001,
+      "checkpoint_schedule": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        100
+      ],
+      "matched_schedule": true,
+      "beta0_final": 0.003118571883995891,
+      "beta_tune_final": 0.0027233767795502573,
+      "absolute_improvement": 0.00039519510444563366,
+      "relative_improvement_percent": 12.672310247960741,
+      "max_abs_diff_vs_authors_reference": 0.00023447983808932982,
+      "max_relative_diff_vs_authors_reference": 0.06883800939722974,
+      "reference_same_final_order": true,
+      "qualitative_reference_agreement": true,
       "accelerated_lower": true
     }
   }
