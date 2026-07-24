@@ -1,0 +1,17 @@
+[project]
+name = "icml26-repro-anpm"
+version = "0.1.0"
+description = "Reproduction of 'Improved Analysis of the Accelerated Noisy Power Method with Applications to Decentralized PCA' (Aguie, Even, Massoulie; arXiv 2602.03682, OpenReview UTiEfkfNQ2)"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "numpy>=1.26,<3.0",
+    "scipy>=1.11,<2.0",
+    "networkx>=3.1,<4.0",
+    "matplotlib>=3.7,<4.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+
+[tool.uv]
+package = false
