@@ -1,0 +1,87 @@
+{
+  "claim": "Claim 2: Theorems 2.4 & 2.5 (noise conditions cannot be relaxed)",
+  "thm_2_4": {
+    "theorem": "2.4",
+    "params": {
+      "d": 8,
+      "k": 2,
+      "lambda_k": 1.0,
+      "beta": 0.16,
+      "two_sqrt_beta": 0.8,
+      "eps": 0.01,
+      "Delta": 0.19999999999999996
+    },
+    "assumptions": {
+      "cos_theta_k_X0": 0.999800059980007,
+      "cos_positive": true,
+      "tan_theta_k_X0": 0.020000000000000004,
+      "equals_2eps": true
+    },
+    "noise": {
+      "strict_c": 0.03125,
+      "relaxed_constant": 8.0,
+      "ratio_relaxed_over_strict": 256.0,
+      "relaxed_condition_holds": true,
+      "complementary_condition_zero": true
+    },
+    "divergence": {
+      "horizon": 4000,
+      "min_tan_theta": 0.020000000000000004,
+      "max_tan_theta": 0.08268743525391134,
+      "min_sin_theta": 0.019996001199600422,
+      "never_reaches_eps": true,
+      "official_qr_min_tan_theta": 0.011105145563000716,
+      "official_qr_never_reaches_eps": true
+    },
+    "analytic_bound_phi": {
+      "phi_min": 0.015,
+      "phi_above_eps": true,
+      "phi_le_observed_h": true
+    }
+  },
+  "thm_2_5": {
+    "theorem": "2.5",
+    "params": {
+      "d": 8,
+      "k": 2,
+      "lambda_k": 1.0,
+      "beta": 0.16,
+      "two_sqrt_beta": 0.8,
+      "eps": 0.01,
+      "Delta": 0.19999999999999996
+    },
+    "assumptions": {
+      "cos_theta_k_X0": 0.999800059980007,
+      "cos_positive": true,
+      "tan_theta_k_X0": 0.020000000000000004,
+      "equals_2eps": true
+    },
+    "noise": {
+      "strict_c": 0.03125,
+      "relaxed_constant": 1.0,
+      "ratio_relaxed_over_strict": 32.0,
+      "relaxed_condition_holds": true,
+      "complementary_condition_zero": true
+    },
+    "divergence": {
+      "horizon": 4000,
+      "min_tan_theta": 0.019999999999989325,
+      "max_tan_theta": 0.0200000000000001,
+      "min_sin_theta": 0.019996001199589317,
+      "never_reaches_eps": true,
+      "official_qr_min_tan_theta": 0.0,
+      "official_qr_never_reaches_eps": false
+    },
+    "analytic_bound_phi": {
+      "phi_min": 0.015,
+      "phi_above_eps": true,
+      "phi_le_observed_h": true
+    }
+  },
+  "strict_constant_converges": {
+    "c": 0.03125,
+    "final_tan_theta": 0.0003125000152587904,
+    "converges": true
+  },
+  "verdict": "VERIFIED"
+}

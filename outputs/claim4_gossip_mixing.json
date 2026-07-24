@@ -1,0 +1,160 @@
+{
+  "claim": "Claim 4: accelerated gossip O~(1/sqrt(gamma_W)) vs standard O~(1/gamma_W)",
+  "method": "official anpm.gossip.AcceleratedGossip; omega=0 (standard) vs omega=compute_omega(W) (accelerated); ring graphs Metropolis weights, gamma_W=sin^2(pi/n)",
+  "delta_relative": 1e-06,
+  "rows": [
+    {
+      "n": 4,
+      "gamma_W": 0.5,
+      "1_over_gamma": 2.0,
+      "1_over_sqrtdelta_gamma": 1.414213562373095,
+      "omega": 0.07179676972449085,
+      "rho_std_empirical": 0.5000000000000002,
+      "rho_std_theory": 0.5,
+      "rho_acc_empirical": 0.2679491924311227,
+      "rho_acc_theory": 0.2928932188134524,
+      "L_star_std": 20,
+      "L_star_acc": 12
+    },
+    {
+      "n": 5,
+      "gamma_W": 0.34549150281252616,
+      "1_over_gamma": 2.894427190999917,
+      "1_over_sqrtdelta_gamma": 1.7013016167040802,
+      "omega": 0.13891672165742133,
+      "rho_std_empirical": 0.6545084971874738,
+      "rho_std_theory": 0.6545084971874738,
+      "rho_acc_empirical": 0.3727153359568418,
+      "rho_acc_theory": 0.412214747707527,
+      "L_star_std": 33,
+      "L_star_acc": 17
+    },
+    {
+      "n": 6,
+      "gamma_W": 0.2499999999999999,
+      "1_over_gamma": 4.000000000000002,
+      "1_over_sqrtdelta_gamma": 2.0000000000000004,
+      "omega": 0.20377661238703074,
+      "rho_std_empirical": 0.75,
+      "rho_std_theory": 0.7500000000000001,
+      "rho_acc_empirical": 0.4514162296451366,
+      "rho_acc_theory": 0.5000000000000001,
+      "L_star_std": 48,
+      "L_star_acc": 21
+    },
+    {
+      "n": 8,
+      "gamma_W": 0.14644660940672616,
+      "1_over_gamma": 6.828427124746193,
+      "1_over_sqrtdelta_gamma": 2.6131259297527536,
+      "omega": 0.31491973794798833,
+      "rho_std_empirical": 0.8535533905932737,
+      "rho_std_theory": 0.8535533905932738,
+      "rho_acc_empirical": 0.5611771003417626,
+      "rho_acc_theory": 0.6173165676349104,
+      "L_star_std": 82,
+      "L_star_acc": 27
+    },
+    {
+      "n": 10,
+      "gamma_W": 0.09549150281252616,
+      "1_over_gamma": 10.472135954999594,
+      "1_over_sqrtdelta_gamma": 3.2360679774997916,
+      "omega": 0.4020765878870271,
+      "rho_std_empirical": 0.9045084971874738,
+      "rho_std_theory": 0.9045084971874738,
+      "rho_acc_empirical": 0.6340950937257223,
+      "rho_acc_theory": 0.6909830056250528,
+      "L_star_std": 130,
+      "L_star_acc": 35
+    },
+    {
+      "n": 14,
+      "gamma_W": 0.04951556604879026,
+      "1_over_gamma": 20.195669358089294,
+      "1_over_sqrtdelta_gamma": 4.493959207434942,
+      "omega": 0.5258181763484502,
+      "rho_std_empirical": 0.9504844339512111,
+      "rho_std_theory": 0.9504844339512097,
+      "rho_acc_empirical": 0.725133212829513,
+      "rho_acc_theory": 0.777479066043686,
+      "L_star_std": 246,
+      "L_star_acc": 48
+    },
+    {
+      "n": 20,
+      "gamma_W": 0.02447174185242329,
+      "1_over_gamma": 40.86345818906128,
+      "1_over_sqrtdelta_gamma": 6.392453221499651,
+      "omega": 0.6395134617231408,
+      "rho_std_empirical": 0.9755282581475769,
+      "rho_std_theory": 0.9755282581475767,
+      "rho_acc_empirical": 0.7996958719743122,
+      "rho_acc_theory": 0.8435655349597688,
+      "L_star_std": 501,
+      "L_star_acc": 68
+    },
+    {
+      "n": 30,
+      "gamma_W": 0.010926199633096934,
+      "1_over_gamma": 91.5231309677763,
+      "1_over_sqrtdelta_gamma": 9.566772233505734,
+      "omega": 0.7430390490666565,
+      "rho_std_empirical": 0.9890738003669037,
+      "rho_std_theory": 0.9890738003669031,
+      "rho_acc_empirical": 0.8619971282241466,
+      "rho_acc_theory": 0.8954715367323477,
+      "L_star_std": 1098,
+      "L_star_acc": 101
+    },
+    {
+      "n": 40,
+      "gamma_W": 0.006155829702430893,
+      "1_over_gamma": 162.44763879759495,
+      "1_over_sqrtdelta_gamma": 12.745494843182627,
+      "omega": 0.800525170799588,
+      "rho_std_empirical": 0.9938441702975687,
+      "rho_std_theory": 0.9938441702975691,
+      "rho_acc_empirical": 0.8947207378550199,
+      "rho_acc_theory": 0.9215409042721566,
+      "L_star_std": 1925,
+      "L_star_acc": 133
+    },
+    {
+      "n": 50,
+      "gamma_W": 0.00394264934276034,
+      "1_over_gamma": 253.63655579369296,
+      "1_over_sqrtdelta_gamma": 15.925971109910158,
+      "omega": 0.8370337337497077,
+      "rho_std_empirical": 0.9960573506572387,
+      "rho_std_theory": 0.9960573506572397,
+      "rho_acc_empirical": 0.9148955028436297,
+      "rho_acc_theory": 0.9372094804706925,
+      "L_star_std": 3021,
+      "L_star_acc": 166
+    },
+    {
+      "n": 60,
+      "gamma_W": 0.0027390523158628,
+      "1_over_gamma": 365.08977729583836,
+      "1_over_sqrtdelta_gamma": 19.107322609299253,
+      "omega": 0.8622606481448348,
+      "rho_std_empirical": 0.9972609476841375,
+      "rho_std_theory": 0.9972609476841372,
+      "rho_acc_empirical": 0.9285799094146182,
+      "rho_acc_theory": 0.9476640437570613,
+      "L_star_std": 4410,
+      "L_star_acc": 202
+    }
+  ],
+  "scaling_fit": {
+    "L_star_vs_1_over_gamma_std_exponent": 1.0149322731072667,
+    "L_star_vs_1_over_gamma_acc_exponent": 0.5182128334638213,
+    "L_star_vs_1_over_sqrtgamma_acc_exponent": 1.0364256669276422
+  },
+  "contraction_factor_max_abs_err_vs_theory": {
+    "standard": 1.3322676295501878e-15,
+    "accelerated": 0.05688791189933051
+  },
+  "verdict": "VERIFIED"
+}
