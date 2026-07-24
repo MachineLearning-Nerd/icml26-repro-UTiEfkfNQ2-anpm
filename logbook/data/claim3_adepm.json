@@ -1,0 +1,22 @@
+{
+  "claim": "Claim 3: ADePM accelerated decentralized PCA (Thm 3.3)",
+  "dataset": "SNAP ego-Facebook (n=d=50 subgraph)",
+  "agents": 50,
+  "rank_k": 5,
+  "iterations": 200,
+  "gossip_gamma_W": 0.16459431716027295,
+  "max_abs_diff_vs_authors_reference": 6.838171088402456e-12,
+  "exact_reproduction": true,
+  "ADePM_beats_DePM_at_matched_communication": true,
+  "DePM_over_ADePM_ratios": {
+    "20": {
+      "bstar": 8.468655969879604,
+      "btune": 9.331310811054697
+    },
+    "40": {
+      "bstar": 1243911.7590422384,
+      "btune": 24696.43776275897
+    }
+  },
+  "verdict": "VERIFIED"
+}

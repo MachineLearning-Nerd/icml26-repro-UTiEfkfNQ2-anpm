@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "title": "Repro - Accelerated Noisy Power Method (ANPM)",
+  "emoji": "🎯",
+  "space_id": "DineshAI/UTiEfkfNQ2",
+  "paper": {
+    "arxiv_id": "2602.03682",
+    "openreview_id": "UTiEfkfNQ2"
+  },
+  "tags": [
+    "icml2026-repro",
+    "paper-UTiEfkfNQ2"
+  ],
+  "updated_at": "2026-07-25T01:20:00+00:00",
+  "root": {
+    "slug": "index",
+    "title": "ANPM (UTiEfkfNQ2) — claim-by-claim reproduction",
+    "file": "pages/index.md",
+    "children": [
+      {
+        "slug": "claim-1-noise-boundary",
+        "title": "Claim 1 — mild Δ·ε noise boundary (Thm 2.2)",
+        "file": "pages/claim-1-noise-boundary/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-2-counterexamples",
+        "title": "Claim 2 — counterexamples: conditions cannot be relaxed (Thm 2.4/2.5)",
+        "file": "pages/claim-2-counterexamples/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-3-adepm",
+        "title": "Claim 3 — ADePM accelerated decentralized PCA (Thm 3.3)",
+        "file": "pages/claim-3-adepm/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-4-gossip-mixing",
+        "title": "Claim 4 — gossip Õ(1/√γ_W) vs Õ(1/γ_W) (Prop 3.2)",
+        "file": "pages/claim-4-gossip-mixing/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-5-deepca-speedup",
+        "title": "Claim 5 — β* √-speedup & ADePM > DePM/DeEPCA (§4)",
+        "file": "pages/claim-5-deepca-speedup/page.md",
+        "children": []
+      },
+      {
+        "slug": "methods-environment",
+        "title": "Methods & environment",
+        "file": "pages/methods-environment/page.md",
+        "children": []
+      },
+      {
+        "slug": "conclusion",
+        "title": "Conclusion",
+        "file": "pages/conclusion/page.md",
+        "children": []
+      },
+      {
+        "slug": "historical-previous-3-claim-baseline",
+        "title": "Historical — previous 3-claim baseline (superseded)",
+        "file": "",
+        "children": [
+          {
+            "slug": "claim-1-accelerated-rate-under-perturbation",
+            "title": "Historical: Claim 1 — accelerated rate under perturbation",
+            "file": "pages/claim-1-accelerated-rate-under-perturbation/page.md",
+            "children": []
+          },
+          {
+            "slug": "claim-2-decentralized-pca",
+            "title": "Historical: Claim 2 — decentralized PCA",
+            "file": "pages/claim-2-decentralized-pca/page.md",
+            "children": []
+          },
+          {
+            "slug": "claim-3-worst-case-optimal-boundary",
+            "title": "Historical: Claim 3 — worst-case optimal boundary",
+            "file": "pages/claim-3-worst-case-optimal-boundary/page.md",
+            "children": []
+          },
+          {
+            "slug": "negative-controls-falsification",
+            "title": "Historical: Negative controls & falsification",
+            "file": "pages/negative-controls-falsification/page.md",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "agent_view_tokens": 6000,
+  "revision": "1784262825008405980"
+}

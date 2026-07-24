@@ -1,0 +1,79 @@
+{
+  "claim": "Claim 5: beta* sqrt speedup + ADePM > DePM/DeEPCA (Sec 4)",
+  "partA_real_data": {
+    "dataset": "SNAP ego-Facebook (n=d=50 subgraph)",
+    "ADePM_beats_DePM": true,
+    "ADePM_beats_DeEPCA": true,
+    "DeEPCA_over_ADePM_bstar": {
+      "20": 8.178394353297831,
+      "40": 1243911.2309841341
+    },
+    "DeEPCA_final_L20": 0.003553243467635026,
+    "DeEPCA_final_L40": 0.003552721959639524,
+    "ADePM_bstar_final_L20": 0.00043446712326879015,
+    "ADePM_bstar_final_L40": 2.856089623717561e-09,
+    "DeEPCA_plateaus_with_L": true,
+    "ADePM_keeps_improving_with_L": true
+  },
+  "partB_sqrt_speedup": {
+    "exponent": 1.0006978285692545,
+    "rows": [
+      {
+        "gap": 0.1,
+        "Delta": 0.09999999999999998,
+        "1_over_Delta": 10.000000000000002,
+        "1_over_sqrtDelta": 3.16227766016838,
+        "T_beta_star": 36,
+        "T_beta_0": 131,
+        "speedup_ratio": 3.638888888888889
+      },
+      {
+        "gap": 0.03,
+        "Delta": 0.030000000000000027,
+        "1_over_Delta": 33.33333333333331,
+        "1_over_sqrtDelta": 5.773502691896255,
+        "T_beta_star": 71,
+        "T_beta_0": 456,
+        "speedup_ratio": 6.422535211267606
+      },
+      {
+        "gap": 0.01,
+        "Delta": 0.010000000000000009,
+        "1_over_Delta": 99.99999999999991,
+        "1_over_sqrtDelta": 9.999999999999995,
+        "T_beta_star": 115,
+        "T_beta_0": 1383,
+        "speedup_ratio": 12.02608695652174
+      },
+      {
+        "gap": 0.003,
+        "Delta": 0.0030000000000000027,
+        "1_over_Delta": 333.33333333333303,
+        "1_over_sqrtDelta": 18.25741858350553,
+        "T_beta_star": 211,
+        "T_beta_0": 4627,
+        "speedup_ratio": 21.928909952606634
+      },
+      {
+        "gap": 0.001,
+        "Delta": 0.0010000000000000009,
+        "1_over_Delta": 999.9999999999991,
+        "1_over_sqrtDelta": 31.622776601683782,
+        "T_beta_star": 382,
+        "T_beta_0": 13894,
+        "speedup_ratio": 36.3717277486911
+      },
+      {
+        "gap": 0.0003,
+        "Delta": 0.00029999999999996696,
+        "1_over_Delta": 3333.3333333337005,
+        "1_over_sqrtDelta": 57.73502691896576,
+        "T_beta_star": 709,
+        "T_beta_0": 46334,
+        "speedup_ratio": 65.35119887165021
+      }
+    ],
+    "theory": 1.0
+  },
+  "verdict": "VERIFIED"
+}
